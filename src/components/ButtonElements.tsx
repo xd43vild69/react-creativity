@@ -1,14 +1,31 @@
-import React from 'react'
+import { FC, useState } from 'react'
+import { createSolutionBuilderWithWatchHost } from 'typescript';
 
-const ButtonElements = () => {
+interface Props {
+    name: string
+}
+
+const ButtonElements: FC<{ name: string }> = ({ name }: Props) => {
+
+    const [levelName, setLevelName] = useState<string>("Level1");
+    const [counter, setCounter] = useState<number>(0); 
 
     const addTask = (): void => {
-        console.log("xxx");
+        if (counter === 0){
+            setLevelName("Level 2");
+            setCounter(1);
+        }else if (counter ===1){
+            setLevelName("Level 3");
+            setCounter(2);
+        }else if (counter === 2){
+            setLevelName("Level 1");
+            setCounter(0);
+        }        
     }
 
     return (
         <>
-            <button onClick={addTask}>Level1</button>
+            <button className="btnElement" onClick={addTask}>{levelName}</button>
         </>
     )
 }
