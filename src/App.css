@@ -14,12 +14,12 @@
 
 .App-header {
   background-color: hsl(220, 13%, 18%);
-  min-height: 20vh;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 5vw;
+  font-size: 2vw;
   color: white;
 }
 
@@ -46,6 +46,7 @@
 .buttonElements button {
   margin-top: 1em;
   font-size: 3vw;
+  height: 100px;
 }
 
 .DDLElements {

@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Creativity
+        CREATIVITY *2
       </header>
       <section>
         <CreativityManager />

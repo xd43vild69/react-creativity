@@ -1,21 +1,22 @@
-import { FC, useState } from 'react'
-import { createSolutionBuilderWithWatchHost } from 'typescript';
+import React, { FC, useState } from 'react'
 
 interface Props {
-    name: string
+    name: string;
+    handleButtonStart: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const ButtonStart: FC<{ name: string }> = ({ name }: Props) => {
-
-    const [levelName, setLevelName] = useState<string>("Start");
+const ButtonStart = ({ name, handleButtonStart }: Props) => {
 
     const addTask = (): void => {
-             
+
     }
 
     return (
         <>
-            <button className="btnElement" onClick={addTask}>{levelName}</button>
+            <button className="btnElement" onClick={handleButtonStart}>{name}</button>
+            {/* <button className="btnElement" onClick={() => {
+                handleButtonStart();
+            }}>x</button> */}
         </>
     )
 }
