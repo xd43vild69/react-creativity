@@ -8,25 +8,24 @@ export interface IElements {
 interface Props {
     name: string
     options?: IElements[]
+    selection?: string
 }
 
-const DropdownElements: FC<{ name: string, options: IElements[] }> = ({ name, options }: Props) => {
+const DropdownElements: FC<{ name: string, options: IElements[], selection: string }> = ({ name, options, selection }: Props) => {
 
-    const [optionsElement, setOptionElements] = useState<IElements[]>([]);
+    const [selected, setSelected] = useState("tango");
 
-    //let ddlElements = optionsElement ?? [{ label: " ", value: " " }];
-
-    //setOptionElements(options);
-
-    //console.log(options);
+    // if (selection !== "") {
+    //     setSelected("tango");
+    // }
 
     return (
         <div className="DropdownElement">
             <label>{name}</label>
             {/* {fruit} */}
-            <select>
+            <select value={selection}>
                 <option value="-1">Select one</option>
-                {options?.map((fruit) => <option value={fruit.label}>{fruit.label}</option>)}
+                {options?.map((element) => <option value={element.label}>{element.label}</option>)}
             </select>
         </div>
     )

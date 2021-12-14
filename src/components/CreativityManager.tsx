@@ -3,14 +3,19 @@ import DropdownElements, { IElements } from './DropdownElements'
 import ButtonElements from './ButtonElements'
 import Feedback from './Feedback'
 import ButtonStart from './ButtonStart'
+import CreativitySelection from './CreativitySelection'
 
 const CreativityManager = () => {
 
-    const arrayElements: Array<IElements> = [{ label: "1", value: "2" }, { label: "1x", value: "2x" }, { label: "1x", value: "2y" }]
+    // const arrayElements: Array<IElements> = [{ label: "1", value: "2" }, { label: "1x", value: "2x" }, { label: "1x", value: "2y" }]
     const [startButtonName, setStartButtonName] = useState<string>("Start");
     const [soundtrack, setSoundtrack] = useState([]);
-    const [themes, setThemes] = useState([]);
     const [compositionElements, setCompositionElements] = useState([]);
+    const [themes, setThemes] = useState([]);
+
+    const [selSoundtrack, setSelSoundtrack] = useState("");
+    const [selCompositionElements, setSelCompositionElements] = useState("");
+    const [selThemes, setSelThemes] = useState("");
 
     useEffect(() => {
         const getSoundtracks = async () => {
@@ -56,6 +61,12 @@ const CreativityManager = () => {
 
     const handleButtonStart = () => {
         setStartButtonName("Restart");
+
+        let c = new CreativitySelection();
+        setSelSoundtrack(c.getSelection(soundtrack));
+        setSelCompositionElements(c.getSelection(compositionElements));
+        setSelThemes(c.getSelection(themes));
+        console.log(Object.values(selThemes)[1]);
     }
 
     return (
@@ -65,9 +76,9 @@ const CreativityManager = () => {
                 <ButtonStart name={startButtonName} handleButtonStart={handleButtonStart} />
             </div>
             <div className="DDLElements">
-                <DropdownElements name="Soundtrack" options={soundtrack} />
-                <DropdownElements name="Composition Elements" options={compositionElements} />
-                <DropdownElements name="Themes" options={themes} />
+                <DropdownElements name="Soundtrack" options={soundtrack} selection={Object.values(selSoundtrack)[1]} />
+                <DropdownElements name="Composition Elements" options={compositionElements} selection={Object.values(selCompositionElements)[1]} />
+                <DropdownElements name="Themes" options={themes} selection={Object.values(selThemes)[1]} />
             </div>
             <div className="container"></div>
             <footer className="feedback">
