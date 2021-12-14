@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import DropdownElements, { IElements } from './DropdownElements'
 import ButtonElements from './ButtonElements'
 import Feedback from './Feedback'
@@ -7,13 +7,56 @@ import ButtonStart from './ButtonStart'
 const CreativityManager = () => {
 
     const arrayElements: Array<IElements> = [{ label: "1", value: "2" }, { label: "1x", value: "2x" }, { label: "1x", value: "2y" }]
+    const [startButtonName, setStartButtonName] = useState<string>("Start");
+    const [soundtrack, setSoundtrack] = useState([]);
+    const [themes, setThemes] = useState([]);
+    const [compositionElements, setCompositionElements] = useState([]);
+
+    useEffect(() => {
+        const getSoundtracks = async () => {
+            const tasksFromServer = await fetchSoundtrack();
+            setSoundtrack(tasksFromServer);
+        };
+
+        getSoundtracks();
+
+        const getThemes = async () => {
+            const tasksFromServer = await fetchThemes();
+            setThemes(tasksFromServer);
+        };
+
+        getThemes();
+
+        const getCompositionElements = async () => {
+            const tasksFromServer = await fetchCompositionElements();
+            setCompositionElements(tasksFromServer);
+        };
+
+        getCompositionElements();
+
+    }, []);
+
+    const fetchSoundtrack = async () => {
+        const res = await fetch("http://localhost:3000/soundtrack");
+        const data = await res.json();
+        return data;
+    };
+
+    const fetchThemes = async () => {
+        const res = await fetch("http://localhost:3000/themes");
+        const data = await res.json();
+        return data;
+    };
+
+    const fetchCompositionElements = async () => {
+        const res = await fetch("http://localhost:3000/compositionElements");
+        const data = await res.json();
+        return data;
+    };
 
     const handleButtonStart = () => {
-        console.log("handleButtonStart");
         setStartButtonName("Restart");
     }
-
-    const [startButtonName, setStartButtonName] = useState<string>("Start");
 
     return (
         <div>
@@ -22,9 +65,9 @@ const CreativityManager = () => {
                 <ButtonStart name={startButtonName} handleButtonStart={handleButtonStart} />
             </div>
             <div className="DDLElements">
-                <DropdownElements name="Soundtrack" options={arrayElements} />
-                <DropdownElements name="Composition Elements" options={arrayElements} />
-                <DropdownElements name="Themes" options={arrayElements} />
+                <DropdownElements name="Soundtrack" options={soundtrack} />
+                <DropdownElements name="Composition Elements" options={compositionElements} />
+                <DropdownElements name="Themes" options={themes} />
             </div>
             <div className="container"></div>
             <footer className="feedback">

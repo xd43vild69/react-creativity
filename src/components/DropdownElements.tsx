@@ -18,7 +18,7 @@ const DropdownElements: FC<{ name: string, options: IElements[] }> = ({ name, op
 
     //setOptionElements(options);
 
-    console.log(options);
+    //console.log(options);
 
     return (
         <div className="DropdownElement">
