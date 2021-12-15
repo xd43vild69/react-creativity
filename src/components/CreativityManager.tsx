@@ -41,20 +41,23 @@ const CreativityManager = () => {
 
     }, []);
 
+    const urlServer: string = "http://localhost:3000";
+    //const urlServer: string = "http://192.168.1.162:3000";
+
     const fetchSoundtrack = async () => {
-        const res = await fetch("http://localhost:3000/soundtrack");
+        const res = await fetch(`${urlServer}/soundtrack`);
         const data = await res.json();
         return data;
     };
 
     const fetchThemes = async () => {
-        const res = await fetch("http://localhost:3000/themes");
+        const res = await fetch(`${urlServer}/themes`);
         const data = await res.json();
         return data;
     };
 
     const fetchCompositionElements = async () => {
-        const res = await fetch("http://localhost:3000/compositionElements");
+        const res = await fetch(`${urlServer}/compositionElements`);
         const data = await res.json();
         return data;
     };
