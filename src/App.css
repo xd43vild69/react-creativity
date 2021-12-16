@@ -1,10 +1,23 @@
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box;
   font-family: ’Lato’, sans-serif;
   margin: 0; 
-  padding: 0;
+  padding: 0; */
 }
 
+.App {
+  /* text-align: center;
+  display: flex;  
+  flex-direction: column; */
+  border: 1px solid #61dafb;
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+Body {
+  font-size: 1.125rem;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -27,6 +40,28 @@
   color: #61dafb;
 }
 
+.container { /* Aux space footer fix to the bottom */
+  /* background-color: rgb(177, 104, 104); */
+  min-height: 100%;
+  flex: 1; 
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(26, 26, 26);
+  color: white;
+  text-align: center;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,6 +69,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1{
+  font-size: 1rem;
+  color: #bb8900;
+}
+
+h1 span{ 
+  color: rgb(250, 250, 250);
 }
 
 .buttonElements {
@@ -77,31 +121,6 @@
   background-color: rgb(32, 32, 32);
   color:rgb(177, 177, 177);
   border-radius:6px;
-}
-
-.App {
-  text-align: center;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.container {
-  /* background-color: rgb(177, 104, 104); */
-  min-height: 10vh;
-  flex: 1; 
-}
-
-footer {
-  background-color: #555;
-  color: #bbb;
-  line-height: 1.5;
-}
-
-.feedback {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
 }
 
 

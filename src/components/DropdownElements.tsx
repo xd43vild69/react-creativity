@@ -22,10 +22,9 @@ const DropdownElements: FC<{ name: string, options: IElements[], selection: stri
     return (
         <div className="DropdownElement">
             <label>{name}</label>
-            {/* {fruit} */}
             <select value={selection}>
                 <option value="-1">Select one</option>
-                {options?.map((element) => <option value={element.label}>{element.label}</option>)}
+                {options?.map((element) => <option value={element.value}>{element.value}</option>)}
             </select>
         </div>
     )

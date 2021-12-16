@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react'
 import DropdownElements, { IElements } from './DropdownElements'
 import ButtonElements from './ButtonElements'
-import Feedback from './Feedback'
 import ButtonStart from './ButtonStart'
 import CreativitySelection from './CreativitySelection'
 
@@ -45,8 +44,10 @@ const CreativityManager = () => {
     //const urlServer: string = "http://192.168.1.162:3000";
 
     const fetchSoundtrack = async () => {
-        const res = await fetch(`${urlServer}/soundtrack`);
-        const data = await res.json();
+        //const res = await fetch(`${urlServer}/soundtrack`);
+        const res = await fetch(`https://localhost:5001/soundtrack`);        
+        const data = await res.json();        
+        console.log(data);
         return data;
     };
 
@@ -57,7 +58,8 @@ const CreativityManager = () => {
     };
 
     const fetchCompositionElements = async () => {
-        const res = await fetch(`${urlServer}/compositionElements`);
+        // const res = await fetch(`${urlServer}/compositionElements`);
+        const res = await fetch(`https://localhost:5001/compositionelements`);        
         const data = await res.json();
         return data;
     };
@@ -83,11 +85,6 @@ const CreativityManager = () => {
                 <DropdownElements name="Composition Elements" options={compositionElements} selection={Object.values(selCompositionElements)[1]} />
                 <DropdownElements name="Themes" options={themes} selection={Object.values(selThemes)[1]} />
             </div>
-            <div className="container"></div>
-            <footer className="feedback">
-                <Feedback />
-                <div>Footer</div>
-            </footer>
         </div>
     )
 }
